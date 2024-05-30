@@ -4,185 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to an external CSS file -->
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        section {
+            text-align: center;
+            background-color: #f4f4f4;
             padding: 20px;
-            margin: 20px;
+        }
+        .container {
             background: #fff;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
         }
         h1, h2 {
             color: #333;
-        }
-        .photo-gallery img {
-            width: 200px;
-            height: 150px;
-            margin: 10px;
-        }
-        form label {
-            display: block;
-            margin-top: 10px;
-        }
-        form input, form select, form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        form button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            background: #333;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
         #countdown {
             font-size: 24px;
             color: #333;
         }
+        .comments, .rsvp {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .comment-box, .rsvp-box {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .comment-button, .rsvp-button {
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+        .payment-link {
+            display: block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
-    <!-- Home Page -->
-    <section id="home">
-        <h1>Welcome to Our Wedding</h1>
+    <h1>Welcome to Our Wedding</h1>
+    <div class="container">
         <p>We are excited to celebrate our special day with you!</p>
-        <nav>
-            <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#details">Event Details</a></li>
-                <li><a href="#rsvp">RSVP</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#comments">Comments</a></li>
-                <li><a href="#gifts">Gift Registry</a></li>
-            </ul>
-        </nav>
-    </section>
-
-    <!-- Countdown Timer -->
-    <section id="countdown-timer">
         <h2>Countdown to Our Wedding</h2>
         <div id="countdown"></div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about">
-        <h2>About Us</h2>
-        <p>Our journey started... [Your story here]</p>
-    </section>
-
-    <!-- Event Details Section -->
-    <section id="details">
-        <h2>Event Details</h2>
-        <p><strong>Date:</strong> [Your wedding date]</p>
-        <p><strong>Time:</strong> [Your wedding time]</p>
-        <p><strong>Venue:</strong> [Your wedding venue]</p>
-        <p>[Additional details about the event]</p>
-    </section>
-
-    <!-- RSVP Section -->
-    <section id="rsvp">
-        <h2>RSVP</h2>
-        <form action="submit_rsvp.php" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br>
-            <label for="attending">Will you be attending?</label>
-            <select id="attending" name="attending" required>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select><br>
-            <button type="submit">Submit</button>
-        </form>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery">
-        <h2>Gallery</h2>
-        <div class="photo-gallery">
-            <!-- Add your photos here -->
-            <img src="photo1.jpg" alt="Photo 1">
-            <img src="photo2.jpg" alt="Photo 2">
-            <!-- More photos -->
+        
+        <div class="rsvp">
+            <h2>RSVP</h2>
+            <input type="text" id="rsvp-name" class="rsvp-box" placeholder="Your Name">
+            <button class="rsvp-button" onclick="submitRSVP()">Submit</button>
         </div>
-    </section>
-
-    <!-- Comments Section -->
-    <section id="comments">
-        <h2>Comments</h2>
-        <form action="submit_comment.php" method="post">
-            <label for="comment-name">Name:</label>
-            <input type="text" id="comment-name" name="comment-name" required><br>
-            <label for="comment-text">Comment:</label>
-            <textarea id="comment-text" name="comment-text" required></textarea><br>
-            <button type="submit">Submit</button>
-        </form>
-        <div class="comment-list">
-            <!-- Display comments here -->
-            <!-- Example comment -->
-            <div class="comment">
-                <p><strong>Guest Name:</strong> Best wishes!</p>
-            </div>
+        
+        <div class="comments">
+            <h2>Comments</h2>
+            <textarea id="comment-box" class="comment-box" placeholder="Write a comment..."></textarea>
+            <button class="comment-button" onclick="submitComment()">Submit</button>
+            <div id="comments-list"></div>
         </div>
-    </section>
+        
+        <a href="https://your-payment-link.com" class="payment-link">Make a Payment</a>
+    </div>
 
-    <!-- Gift Registry Section -->
-    <section id="gifts">
-        <h2>Gift Registry</h2>
-        <p>Your presence at our wedding is the greatest gift of all. However, if you wish to contribute to our future together, we have set up a wedding fund.</p>
-        <p><strong>Contribution Link:</strong> <a href="https://www.paypal.com/your-link" target="_blank">Click here to contribute via PayPal</a></p>
-        <!-- You can add more links or information here -->
-    </section>
-
-    <!-- JavaScript for Countdown Timer -->
     <script>
-        // Set the date we're counting down to
         var countDownDate = new Date("Jun 30, 2024 15:00:00").getTime();
-
-        // Update the count down every 1 second
         var x = setInterval(function() {
-            // Get today's date and time
             var now = new Date().getTime();
-            
-            // Find the distance between now and the count down date
             var distance = countDownDate - now;
-            
-            // Time calculations for days, hours, minutes and seconds
             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            // Display the result in the element with id="countdown"
             document.getElementById("countdown").innerHTML = days + "d " + hours + "h " 
             + minutes + "m " + seconds + "s ";
-            
-            // If the count down is over, write some text 
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("countdown").innerHTML = "EXPIRED";
+                document.getElementById("countdown").innerHTML = "The wedding has started!";
             }
         }, 1000);
+
+        function submitComment() {
+            var commentBox = document.getElementById('comment-box');
+            var comment = commentBox.value;
+            var commentsList = document.getElementById('comments-list');
+            var newComment = document.createElement('div');
+            newComment.textContent = comment;
+            commentsList.appendChild(newComment);
+            commentBox.value = '';
+        }
+
+        function submitRSVP() {
+            var rsvpBox = document.getElementById('rsvp-name');
+            var name = rsvpBox.value;
+            alert(name + ', thank you for your RSVP!');
+            rsvpBox.value = '';
+        }
     </script>
 </body>
 </html>
+
